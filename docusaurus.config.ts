@@ -59,10 +59,11 @@ const config: Config = {
 
   themeConfig: {
     navbar: {
-      title: 'Toggle Brain',
+      title: '',
       logo: {
         alt: 'Toggle Solutions',
-        src: 'img/logo.svg',
+        src: 'img/logo-light.svg',
+        srcDark: 'img/logo-dark.svg',
       },
       items: [
         {
