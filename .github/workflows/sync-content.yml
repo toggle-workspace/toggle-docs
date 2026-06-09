@@ -1,0 +1,95 @@
+name: Sync content from toggle-brain
+
+on:
+  workflow_dispatch: {}
+  repository_dispatch:
+    types: [sync-content]
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout toggle-docs
+        uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Sparse-checkout toggle-brain
+        uses: actions/checkout@v4
+        with:
+          repository: toggle-workspace/toggle-brain
+          token: ${{ secrets.BRAIN_READ_TOKEN }}
+          sparse-checkout: |
+            brain
+            playbooks
+            generators
+            prompts
+            templates
+            clients
+            cockpit
+            README.md
+            MAP.md
+          sparse-checkout-cone-mode: true
+          path: _brain
+
+      - name: Clear existing synced content zones
+        run: |
+          rm -rf docs/brain docs/playbooks docs/generators \
+                 docs/prompts docs/templates docs/clients docs/cockpit
+
+      - name: Rsync zones into docs/
+        run: |
+          for zone in brain playbooks generators prompts templates clients cockpit; do
+            if [ -d "_brain/$zone" ]; then
+              mkdir -p "docs/$zone"
+              rsync -av --delete "_brain/$zone/" "docs/$zone/"
+            fi
+          done
+          cp _brain/README.md docs/toggle-brain-readme.md || true
+          cp _brain/MAP.md docs/map.md || true
+
+      - name: Inject _category_.json files for sidebar labels
+        run: |
+          declare -A labels=(
+            ["brain"]="Knowledge Base"
+            ["playbooks"]="Playbooks"
+            ["generators"]="Generators"
+            ["prompts"]="Prompt Library"
+            ["templates"]="Templates"
+            ["clients"]="Clients"
+            ["cockpit"]="Cockpit"
+          )
+          declare -A positions=(
+            ["brain"]=1
+            ["playbooks"]=2
+            ["generators"]=3
+            ["prompts"]=4
+            ["templates"]=5
+            ["clients"]=6
+            ["cockpit"]=7
+          )
+          for zone in "${!labels[@]}"; do
+            if [ -d "docs/$zone" ]; then
+              printf '{\n  "label": "%s",\n  "position": %s,\n  "collapsible": true,\n  "collapsed": true\n}\n' \
+                "${labels[$zone]}" "${positions[$zone]}" > "docs/$zone/_category_.json"
+            fi
+          done
+
+      - name: Remove CLAUDE.md files (internal AI routing, not useful in docs hub)
+        run: find docs/ -name "CLAUDE.md" -delete
+
+      - name: Commit and push if content changed
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add docs/
+          if git diff --cached --quiet; then
+            echo "No content changes — skipping commit"
+          else
+            SHA="${{ github.event.client_payload.sha }}"
+            git commit -m "sync: toggle-brain@${SHA:-manual}"
+            git push
+          fi

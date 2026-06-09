@@ -1,0 +1,29 @@
+/**
+ * Any CSS included here will be global. The classic template
+ * bundles Infima by default. Infima is a CSS framework designed to
+ * work well for content-centric websites.
+ */
+
+/* Toggle Solutions brand colors — update hex values once final brand palette is confirmed */
+:root {
+  --ifm-color-primary: #1a1a2e;
+  --ifm-color-primary-dark: #16162a;
+  --ifm-color-primary-darker: #141426;
+  --ifm-color-primary-darkest: #0f0f1e;
+  --ifm-color-primary-light: #1e1e32;
+  --ifm-color-primary-lighter: #202036;
+  --ifm-color-primary-lightest: #26263e;
+  --ifm-code-font-size: 95%;
+  --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.1);
+}
+
+[data-theme='dark'] {
+  --ifm-color-primary: #6c63ff;
+  --ifm-color-primary-dark: #5a50ff;
+  --ifm-color-primary-darker: #4e45ff;
+  --ifm-color-primary-darkest: #2e23ff;
+  --ifm-color-primary-light: #7e76ff;
+  --ifm-color-primary-lighter: #8a82ff;
+  --ifm-color-primary-lightest: #aaa5ff;
+  --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.3);
+}
