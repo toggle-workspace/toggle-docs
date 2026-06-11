@@ -4,58 +4,6 @@
  * work well for content-centric websites.
  */
 
-/* DocSearch modal — centered wide on desktop, full-screen on mobile */
-.DocSearch-Modal {
-  border-radius: 12px;
-  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.25);
-}
-
-/* Desktop: wide centered modal */
-@media (min-width: 769px) {
-  .DocSearch-Container {
-    align-items: flex-start;
-    padding-top: 80px;
-  }
-
-  .DocSearch-Modal {
-    width: min(680px, 90vw);
-    max-height: 70vh;
-  }
-}
-
-/* Mobile: full-screen */
-@media (max-width: 768px) {
-  .DocSearch-Container {
-    padding: 0;
-    align-items: flex-start;
-  }
-
-  .DocSearch-Modal {
-    width: 100vw;
-    height: 100dvh;
-    max-height: 100dvh;
-    border-radius: 0;
-    margin: 0;
-    box-shadow: none;
-  }
-
-  .DocSearch-Form {
-    border-radius: 8px;
-    margin: 12px;
-  }
-
-  .DocSearch-Dropdown {
-    max-height: calc(100dvh - 140px);
-  }
-
-  .DocSearch-Footer {
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    right: 0;
-  }
-}
-
 /* Toggle Solutions brand colors — update hex values once final brand palette is confirmed */
 :root {
   --ifm-color-primary: #0045d9;
