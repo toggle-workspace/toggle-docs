@@ -1,11 +1,29 @@
 .features {
-  display: flex;
-  align-items: center;
-  padding: 2rem 0;
-  width: 100%;
+  padding: 4rem 0 5rem;
 }
 
-.featureSvg {
-  height: 200px;
-  width: 200px;
+.sectionTitle {
+  font-size: 3rem;
+  font-weight: 700;
+  margin-bottom: 2.5rem;
+  color: var(--ifm-font-color-base);
+}
+
+@media (max-width: 768px) {
+  .sectionTitle {
+    font-size: 2.25rem;
+  }
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2.5rem;
+}
+
+@media (max-width: 996px) {
+  .grid {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+  }
 }

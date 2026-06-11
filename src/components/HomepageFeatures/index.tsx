@@ -1,68 +1,39 @@
-import type {ReactNode} from 'react';
-import clsx from 'clsx';
-import Heading from '@theme/Heading';
-import styles from './styles.module.css';
+import type { ReactNode } from "react";
+import Card from "@site/src/components/Card";
+import Heading from "@theme/Heading";
+import styles from "./styles.module.css";
 
-type FeatureItem = {
-  title: string;
-  Svg: React.ComponentType<React.ComponentProps<'svg'>>;
-  description: ReactNode;
-};
-
-const FeatureList: FeatureItem[] = [
+const cards = [
   {
-    title: 'Easy to Use',
-    Svg: require('@site/static/img/undraw_docusaurus_mountain.svg').default,
-    description: (
-      <>
-        Docusaurus was designed from the ground up to be easily installed and
-        used to get your website up and running quickly.
-      </>
-    ),
+    title: "11 Steps From Campaign Brief to Live",
+    description:
+      "The checklist every paid launch runs through on Meta, Google, TikTok, and LinkedIn. Covers brief, media plan, creative QA, client approval, tracking validation, and three post-launch checks.",
+    to: "/playbooks/launch-paid-campaign",
   },
   {
-    title: 'Focus on What Matters',
-    Svg: require('@site/static/img/undraw_docusaurus_tree.svg').default,
-    description: (
-      <>
-        Docusaurus lets you focus on your docs, and we&apos;ll do the chores. Go
-        ahead and move your docs into the <code>docs</code> directory.
-      </>
-    ),
+    title: "First 48 Hours After a Client Signs",
+    description:
+      "Account lead's guide for moving a countersigned quote into an active client folder. Covers slug setup, CLIENT.md, style-pack, kickoff meeting, access requests, and calendar blocks through the 90-day review.",
+    to: "/playbooks/onboard-new-client",
   },
   {
-    title: 'Powered by React',
-    Svg: require('@site/static/img/undraw_docusaurus_react.svg').default,
-    description: (
-      <>
-        Extend or customize your website layout by reusing React. Docusaurus can
-        be extended while reusing the same header and footer.
-      </>
-    ),
+    title: "How Toggle Positions Itself to the Market",
+    description:
+      "The source of truth for Toggle's identity, services, and positioning lines. Use this before any sales call, pitch, or briefing where you need to explain what Toggle does and why it works.",
+    to: "/brain/positioning/agency-profile",
   },
 ];
-
-function Feature({title, Svg, description}: FeatureItem) {
-  return (
-    <div className={clsx('col col--4')}>
-      <div className="text--center">
-        <Svg className={styles.featureSvg} role="img" />
-      </div>
-      <div className="text--center padding-horiz--md">
-        <Heading as="h3">{title}</Heading>
-        <p>{description}</p>
-      </div>
-    </div>
-  );
-}
 
 export default function HomepageFeatures(): ReactNode {
   return (
     <section className={styles.features}>
       <div className="container">
-        <div className="row">
-          {FeatureList.map((props, idx) => (
-            <Feature key={idx} {...props} />
+        <Heading as="h2" className={styles.sectionTitle}>
+          Featured
+        </Heading>
+        <div className={styles.grid}>
+          {cards.map((card, idx) => (
+            <Card key={idx} {...card} />
           ))}
         </div>
       </div>

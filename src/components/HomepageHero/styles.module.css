@@ -1,0 +1,92 @@
+.hero {
+  display: flex;
+  align-items: stretch;
+  min-height: 520px;
+  overflow: hidden;
+}
+
+.heroLeft {
+  width: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding: 4rem 3rem 4rem 1.5rem;
+}
+
+.heroText {
+  max-width: 480px;
+  width: 100%;
+}
+
+.heroTitle {
+  font-size: clamp(1.75rem, 3.5vw, 2.75rem);
+  font-weight: 800;
+  line-height: 1.15;
+  margin-bottom: 1rem;
+}
+
+.heroSubtitle {
+  font-size: 1.125rem;
+  line-height: 1.6;
+  color: var(--ifm-color-secondary-darkest);
+  margin-bottom: 2rem;
+}
+
+.heroActions {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.heroImageWrap {
+  width: 50%;
+  background-image: url('/img/hero-toggle.png');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+@media (max-width: 996px) {
+  .hero {
+    position: relative;
+    min-height: 420px;
+  }
+
+  .heroImageWrap {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+  }
+
+  .heroLeft {
+    position: relative;
+    z-index: 1;
+    width: 100%;
+    justify-content: flex-start;
+    padding: 3rem 1.5rem;
+    background: linear-gradient(
+      to right,
+      rgba(255, 255, 255, 0.92) 55%,
+      rgba(255, 255, 255, 0) 100%
+    );
+  }
+
+  .heroText {
+    max-width: 100%;
+  }
+}
+
+[data-theme='dark'] .heroLeft {
+  background: none;
+}
+
+@media (max-width: 996px) {
+  [data-theme='dark'] .heroLeft {
+    background: linear-gradient(
+      to right,
+      rgba(28, 30, 31, 0.92) 55%,
+      rgba(28, 30, 31, 0) 100%
+    );
+  }
+}

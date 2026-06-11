@@ -3,7 +3,7 @@ import type {Config} from '@docusaurus/types';
 import type * as Preset from '@docusaurus/preset-classic';
 
 const config: Config = {
-  title: 'Toggle Brain',
+  title: 'Toggle Docs',
   tagline: 'Internal knowledge hub for Toggle Solutions',
   favicon: 'img/favicon.ico',
 
@@ -88,7 +88,7 @@ const config: Config = {
       darkTheme: prismThemes.dracula,
     },
     colorMode: {
-      defaultMode: 'light',
+      defaultMode: 'dark',
       disableSwitch: false,
     },
   } satisfies Preset.ThemeConfig,
