@@ -70,11 +70,13 @@ const config: Config = {
         srcDark: 'img/logo-dark.svg',
       },
       items: [
-        {
-          href: 'https://github.com/toggle/toggle-brain',
-          label: 'Source (toggle-brain)',
-          position: 'right',
-        },
+        { type: 'docSidebar', sidebarId: 'brain',      label: 'Brain',      position: 'left' },
+        { type: 'docSidebar', sidebarId: 'playbooks',   label: 'Playbooks',  position: 'left' },
+        { type: 'docSidebar', sidebarId: 'generators',  label: 'Generators', position: 'left' },
+        { type: 'docSidebar', sidebarId: 'prompts',     label: 'Prompts',    position: 'left' },
+        { type: 'docSidebar', sidebarId: 'templates',   label: 'Templates',  position: 'left' },
+        { type: 'docSidebar', sidebarId: 'clients',     label: 'Clients',    position: 'left' },
+        { type: 'docSidebar', sidebarId: 'cockpit',     label: 'Cockpit',    position: 'left' },
       ],
     },
     footer: {
