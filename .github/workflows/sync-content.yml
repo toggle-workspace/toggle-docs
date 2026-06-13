@@ -30,6 +30,7 @@ jobs:
             templates
             clients
             cockpit
+            installations
             README.md
             MAP.md
           sparse-checkout-cone-mode: true
@@ -38,11 +39,11 @@ jobs:
       - name: Clear existing synced content zones
         run: |
           rm -rf docs/brain docs/playbooks docs/generators \
-                 docs/prompts docs/templates docs/clients docs/cockpit
+                 docs/prompts docs/templates docs/clients docs/cockpit docs/installations
 
       - name: Rsync zones into docs/
         run: |
-          for zone in brain playbooks generators prompts templates clients cockpit; do
+          for zone in brain playbooks generators prompts templates clients cockpit installations; do
             if [ -d "_brain/$zone" ]; then
               mkdir -p "docs/$zone"
               rsync -av --delete "_brain/$zone/" "docs/$zone/"
@@ -61,6 +62,7 @@ jobs:
             ["templates"]="Templates"
             ["clients"]="Clients"
             ["cockpit"]="Cockpit"
+            ["installations"]="Installations"
           )
           declare -A positions=(
             ["brain"]=1
@@ -70,6 +72,7 @@ jobs:
             ["templates"]=5
             ["clients"]=6
             ["cockpit"]=7
+            ["installations"]=8
           )
           for zone in "${!labels[@]}"; do
             if [ -d "docs/$zone" ]; then
